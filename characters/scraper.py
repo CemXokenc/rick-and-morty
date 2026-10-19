@@ -6,9 +6,6 @@ from rick_and_morty_api import settings
 
 def scrape_characters():
     url_to_scrape = settings.RICK_AND_MORTY_API_CHARACTERS_URL
-    characters_response = requests.get(
-        settings.RICK_AND_MORTY_API_CHARACTERS_URL
-    ).json()
 
     characters = []
 
@@ -20,11 +17,11 @@ def scrape_characters():
                 Character(
                     api_id=character_dict["id"],
                     name=character_dict["name"],
-                    stats=character_dict["stats"],
-                    specials=character_dict["specials"],
+                    status=character_dict["status"],
+                    species=character_dict["species"],
                     gender=character_dict["gender"],
                     image=character_dict["image"],
-                )
+                ),
             )
 
         url_to_scrape = characters_response["info"]["next"]

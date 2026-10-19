@@ -17,7 +17,7 @@ class Character(models.Model):
     api_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=200)
     status = models.CharField(max_length=50, choices=StatusChoices.choices)
-    specials = models.CharField(max_length=200)
+    species = models.CharField(max_length=200)
     gender = models.CharField(max_length=50, choices=GenderChoices.choices)
     image = models.URLField(max_length=255, unique=True)
 
