@@ -1,7 +1,12 @@
 import random
 
 from django.db.models import QuerySet
-from drf_spectacular.utils import extend_schema_serializer, OpenApiParameter, extend_schema, OpenApiResponse
+from drf_spectacular.utils import (
+    extend_schema_serializer,
+    OpenApiParameter,
+    extend_schema,
+    OpenApiResponse,
+)
 from rest_framework import status, viewsets, generics
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
@@ -11,11 +16,7 @@ from characters.models import Character
 from characters.serializers import CharacterSerializer
 
 
-@extend_schema(
-    responses={
-        status.HTTP_200_OK: CharacterSerializer
-    }
-)
+@extend_schema(responses={status.HTTP_200_OK: CharacterSerializer})
 @api_view(["GET"])
 def get_random_character_view(request: Request) -> Response:
     """
@@ -46,7 +47,7 @@ class CharacterListView(generics.ListAPIView):
                 name="name",
                 description="Filter by name",
                 required=False,
-                type=str
+                type=str,
             )
         ]
     )

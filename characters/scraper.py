@@ -1,4 +1,5 @@
 import requests
+from django.db import IntegrityError
 
 from characters.models import Character
 from rick_and_morty_api import settings
@@ -31,7 +32,10 @@ def scrape_characters():
 
 def save_characters(characters):
     for character in characters:
-        character.save()
+        try:
+            character.save()
+        except IntegrityError:
+            print(f"Integrity Error: {character}")
 
 
 def sync_characters_with_api():
